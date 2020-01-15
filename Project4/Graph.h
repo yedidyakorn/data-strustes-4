@@ -9,28 +9,33 @@ using namespace std;
 class Vertex;
 class Edge
 {
-public:
 	double distination;
-	Vertex* start;
-	Vertex* end;
-	Edge();
+	Vertex* Start;
+	Vertex* End;
+
+
+public:
+	Edge(Vertex*, Vertex*);
 	~Edge();
 	bool operator ==(Edge e) { return e.distination == this->distination; }
+	string getEnd() { return End->key(); }
 };
+
 
 class Vertex
 {
 	string Key;
-	list<Edge *>EdgeList;
+	list<Edge*>EdgeList;
 	double d;
 	double f;
 	Vertex *pi;
 public:
 	Vertex(string);
-	void addE(Edge);
+	void addE(Edge*);
 	bool distinationExsists();
 	int numOfNeighbors();
 	void print();
+	string key() { return Key; }
 	void removeEdges();
 
 
@@ -41,9 +46,9 @@ public:
 
 class Graph
 {
+	map <string, Vertex*> graph;
 
 public:
-	map <string, Vertex*> myMap;
 	bool addv(string);
 	bool adde(string,string);
 	void printAll();

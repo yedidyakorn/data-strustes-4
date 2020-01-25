@@ -1,59 +1,57 @@
+/*
+File: Graph.h
+Description: clases of the graph and its Ingredients
+Course: Data structres
+Exercise 4
+Author: Yedidya Korn-203304084 & David Abelo-208764340
+*/
 #pragma once
 #include <iostream>
 #include<string>
 #include<list>
 #include<map>
+#include <stack>
+#include <iterator>
 
 using namespace std;
 
 class Vertex;
 class Edge
 {
-	double distination;
-	Vertex* Start;
-	Vertex* End;
-
 
 public:
+	Vertex* Start;
+	Vertex* End;
 	Edge(Vertex*, Vertex*);
 	~Edge();
-	bool operator ==(Edge e) { return e.distination == this->distination; }
-	string getEnd() { return End->key(); }
 };
 
 
 class Vertex
 {
 	string Key;
-	list<Edge*>EdgeList;
-	double d;
-	double f;
-	Vertex *pi;
 public:
 	Vertex(string);
-	void addE(Edge*);
-	bool distinationExsists();
-	int numOfNeighbors();
+	list<Edge*> EdgeList;
+	bool check;		// an paremetr used when graph searching (DFS)
+	void addE(Edge*);		//add Edge
 	void print();
 	string key() { return Key; }
-	void removeEdges();
-
-
+	bool checkTarget(Vertex*);		//checks if points to a spesific Vertex
 };
-
-
 
 
 class Graph
 {
 	map <string, Vertex*> graph;
+	void subTopologicalSort(string str, stack<string>& st);		// recursive functaion  for DFS
+	bool checkVal(string);		//checks if a string is a key in the map
 
 public:
-	bool addv(string);
-	bool adde(string,string);
+	bool addv(string);		//adds Vertex to graph
+	bool adde(string,string);		//adds Edge to graph
 	void printAll();
 	void topologicalSort();
 	Graph();
 	~Graph();
 };
-

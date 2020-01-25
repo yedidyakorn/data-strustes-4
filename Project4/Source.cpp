@@ -1,3 +1,10 @@
+/*
+File: Source.cpp
+Description:main program
+Course: Data structres
+Exercise 4
+Author: Yedidya Korn-203304084 & David Abelo-208764340
+*/
 #include <iostream>
 #include "Graph.h"
 
